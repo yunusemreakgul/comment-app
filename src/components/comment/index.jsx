@@ -1,7 +1,24 @@
 import React from "react";
 
-function Comment() {
-    return <div> Comment </div>
-  }
+import { Reactions } from "./reactions";
+import { Header } from "./header";
+import { Body } from "./body";
+
+import styles from "./styles.modules.scss?inline"
+
+
+function Comment () {
+  return (
+    <div className= {styles.commentWrapper}> 
+      <Reactions />
+      <div className={styles.commentContentArea}>
+        <Header />
+        <Body />
+      </div>
+
+      
+    </div>
+  );
+}
   
-  export {Comment};
+export {Comment};

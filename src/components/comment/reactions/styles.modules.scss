@@ -1,0 +1,12 @@
+.reactionsWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--light-gray);
+}
+
+.commentContentArea {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
