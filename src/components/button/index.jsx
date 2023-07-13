@@ -1,15 +1,14 @@
 import React from "react";
+import {clsx} from "clsx"
 
-import styles from "./styles.modules.scss?inline";
+
+import Styles from "./styles.module.scss";
 
 function Button({ children, variant="ghost", className, ...props}) {
 
   return (
-    <button
-      {...props}
-      className= {styles.button}
-    > 
-        {children}
+    <button className= {clsx(Styles.button, Styles[variant])} {...props}>
+      {children}
     </button>
   )
 }

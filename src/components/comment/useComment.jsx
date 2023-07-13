@@ -9,7 +9,7 @@ function CommentContextProvider ({children, data}) {
 }
 
 function useComment(){
-    const context = useContext (CommentContext);
+    const context = React.useContext (CommentContext);
     
     if (!context) {
         throw new Error("Error")

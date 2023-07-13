@@ -1,8 +1,18 @@
 import React from "react";
 
+import { useComment } from "../useComment";
+
+import Styles from "./styles.module.scss"
+
 function Body() {
+  const {
+    comment: {content},
+  } = useComment();
+
   return (
-    <div> Body </div> 
+    <div> 
+      <p className={Styles.content}>{content}</p>  
+    </div> 
   )
 }
 
