@@ -7,7 +7,9 @@ import Styles from "./styles.module.scss";
 function Button({ children, variant="ghost", className, ...props}) {
 
   return (
-    <button className= {clsx(Styles.button, Styles[variant])} {...props}>
+    <button 
+      {...props}
+      className= {clsx(Styles.button, className, Styles[variant])} {...props}>
       {children}
     </button>
   )

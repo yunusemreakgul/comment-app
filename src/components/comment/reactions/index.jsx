@@ -7,21 +7,33 @@ import { useComment } from "../useComment";
 
 function Reactions() {
   const { 
-    comment : {score} 
+    comment : {score},
+    onPositiveReaction,
+    onNegativeReaction, 
   } = useComment();
  
 
   return (
     <div className={ Styles.reactionsWrapper }> 
-        <Button aria-labelledby="Positive reaction button">
-          <img src="./images/icon-plus.svg" aria-hidden="true"></img>
+        <Button
+          className={Styles.reactionButton} 
+          aria-labelledby="Positive reaction button"
+          onClick={onPositiveReaction}  
+        >
+          <img src="./images/icon-plus.svg" aria-hidden="true"/>
         </Button>
-        <p> {score} </p>
-        <Button aria-labelledby="Negative reaction button">
+        <p className={Styles.score}> 
+          {score} 
+        </p>
+        <Button
+          className={Styles.reactionButton} 
+          aria-labelledby="Negative reaction button"
+          onClick={onNegativeReaction}
+        >
           <img src="./images/icon-minus.svg" aria-hidden="true"></img>
         </Button>
     </div>
-  )
+  );
 }
 
 export {Reactions};

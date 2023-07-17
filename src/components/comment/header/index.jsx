@@ -1,56 +1,57 @@
 import React from "react";
 
-import {Button} from "../../button"
+import Styles from "./styles.module.scss";
 
+import { Button } from "../../button";
 import { useComment } from "../useComment";
-import Styles from "./styles.module.scss"
 
 function Header() {
-  const{
-    currentUser,
-    comment:{
-      createdAt,
-      user:{
-        image,username
-      }
-    }
-  } =useComment();
+  const {
+    onEdit,
+    onReply,
+    onDelete,
+    ownByCurrentUser,
+    comment: { user, createdAt },
+  } = useComment();
 
-  const ownedByCurrnetUser = currentUser.username ===username;
-  return ( 
-    <div className={Styles.headerWrapper}>    
-      <div className={Styles.imageWrapper}> 
-        <img src={image.png} alt="username"/>
-      </div>
-      <h3 className={Styles.username}>{username}</h3>
-      { ownedByCurrnetUser && <span className={Styles.youIndicator}>you</span>}
-      <div className={Styles.createdAt}>{createdAt}</div>
-      <div className={Styles.actionButton}>
-        { ownedByCurrnetUser ?
-          (
-            <>
-              <Button variant="warning">
-                <img src="./images/icon-delete.svg"/>
-                Delete
-              </Button>
-              <Button>
-                <img src="./images/icon-edit.svg"/>
-                Edit
-              </Button>          
-            </>
+  return (
+    <div className={Styles.headerWrapper}>
+      <img
+        className={Styles.userImage}
+        src={user.image.webp}
+        alt={user.username}
+      />
+      <p className={Styles.username}>
+        {user.username}
+      </p>
+      {ownByCurrentUser && <span className={Styles.ownIndicator}>
+        you
+      </span>}
+      <p className={Styles.createdAt}>
+        {createdAt}
+      </p>
 
-          ):(
-              <Button>
-                <img src="./images/icon-reply.svg"/>
-                Reply
-              </Button>
-            )
-        }
-
-
+      <div className={Styles.actionButtons}>
+        {ownByCurrentUser ? (
+          <>
+            <Button onClick={onDelete} variant="warn">
+              <img src="./images/icon-delete.svg" aria-hidden="true" />
+              Delete
+            </Button>
+            <Button onClick={onEdit}>
+              <img src="./images/icon-reply.svg" aria-hidden="true" />
+              Edit
+            </Button>
+          </>
+        ) : (
+          <Button onClick={onReply}>
+            <img src="./images/icon-reply.svg" aria-hidden="true" />
+            Reply
+          </Button>
+        )}
       </div>
     </div>
-  )
+  );
 }
 
-export {Header};
+export { Header };
